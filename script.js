@@ -62,7 +62,12 @@ function handleSignoutClick() {
 
 // Get channel from API
 function getChannel(channel) {
-    console.log(channel);
+    gapi.client.youtube.channels.list({
+        part: 'snippet,contentDetails,statistics',
+        forUsername: channel
+    })
+    .then(response => {
+        console.log(response);
+    })
+    .catch(err => alert('That Channel Does Not Exist'));
 }
-
-console.log('hello');

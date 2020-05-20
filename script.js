@@ -64,3 +64,5 @@ function handleSignoutClick() {
 function getChannel(channel) {
     console.log(channel);
 }
+
+console.log('hello');

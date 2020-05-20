@@ -80,9 +80,9 @@ function getChannel(channel) {
             <ul class="collection">
                 <li class="collection-item">Title: ${channel.snippet.title}</li>
                 <li class="collection-item">ID: ${channel.id}</li>
-                <li class="collection-item">Subs: ${channel.statistics.subscriberCount}</li>
-                <li class="collection-item">Total Views: ${channel.statistics.viewCount}</li>
-                <li class="collection-item">Vides: ${channel.statistics.videoCount}</li>
+                <li class="collection-item">Subs: ${numWithSpaces(channel.statistics.subscriberCount)}</li>
+                <li class="collection-item">Total Views: ${numWithSpaces(channel.statistics.viewCount)}</li>
+                <li class="collection-item">Number of Videos: ${numWithSpaces(channel.statistics.videoCount)}</li>
             </ul>
             <p>${channel.snippet.description}</p>
             <hr>
@@ -91,4 +91,8 @@ function getChannel(channel) {
         showChannelData(output);
     })
     .catch(err => alert('That Channel Does Not Exist'));
+}
+
+function numWithSpaces(num) {
+    return num.replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 }

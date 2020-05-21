@@ -116,10 +116,10 @@ function requestVideoPlaylist(playlistId) {
     };
 
     const request = gapi.client.youtube.playlistItems.list(requestOptions);
+    console.log(request);
 
     request.execute(res => {
         const playListItems = res.result.items;
-        console.log(res);
         if(playListItems) {
             let output = '<h4 class="align-center">Latest Videos</h4>';
 

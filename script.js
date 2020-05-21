@@ -14,6 +14,14 @@ const videoContainer = document.querySelector('#video-container');
 
 const defaultChannel = 'techguyweb';
 
+// Form submit and change channel
+channelForm.addEventListener('submit', e => {
+    e.preventDefault();
+
+    const channel = channelInput.nodeValue;
+    getChannel(channel);
+})
+
 // Load auth2 library
 function handleClientLoad() {
     gapi.load('client:auth2', initClient);

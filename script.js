@@ -123,7 +123,7 @@ function requestVideoPlaylist(playlistId) {
             let output = '<h4 class="align-center">Latest Videos</h4>';
 
             // Loop through videos and append output
-            playListItems.forEach(item => {
+            playlistItems.forEach(item => {
                 const videoId = item.snippet.resourceId.videoId;
 
                 output += `

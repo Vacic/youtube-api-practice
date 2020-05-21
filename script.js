@@ -19,7 +19,6 @@ channelForm.addEventListener('submit', e => {
     e.preventDefault();
 
     const channel = channelInput.value;
-    console.log(channel);
     getChannel(channel);
 })
 
@@ -84,8 +83,6 @@ function getChannel(channel) {
     .then(response => {
         const channel = response.result.items[0];
 
-        console.log(channel);
-
         const output = `
             <ul class="collection">
                 <li class="collection-item">Title: ${channel.snippet.title}</li>
@@ -100,7 +97,7 @@ function getChannel(channel) {
         `;
         showChannelData(output);
 
-        const playlistId = channel.contentDetails.relatedPlaylist.uploads;
+        const playlistId = channel.contentDetails.relatedPlaylists.uploads;
         requestVideoPlaylist(playlistId);
     })
     .catch(err => console.log(err));
@@ -116,8 +113,6 @@ function requestVideoPlaylist(playlistId) {
         part: 'snippet',
         maxResults: 10
     };
-
-    console.log(requestOptions);
 
     const request = gapi.client.youtube.playlistItems.list(requestOptions);
 

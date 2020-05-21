@@ -101,7 +101,7 @@ function getChannel(channel) {
         const playlistId = channel.contentDetails.relatedPlaylist.uploads;
         requestVideoPlaylist(playlistId);
     })
-    .catch(err => alert('That Channel Does Not Exist'));
+    .catch(err => console.log(err));
 }
 
 function numWithSpaces(num) {

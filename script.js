@@ -97,10 +97,45 @@ function getChannel(channel) {
             <a href="https://youtube.com/${channel.snippet.customUrl}" target="_blank" class="btn grey darken-2">Visit Channel</a>
         `;
         showChannelData(output);
+
+        const playlistId = channel.contentDetails.relatedPlaylist.uploads;
+        requestVideoPlaylist(playlistId);
     })
     .catch(err => alert('That Channel Does Not Exist'));
 }
 
 function numWithSpaces(num) {
     return num.replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+}
+
+function requestVideoPlaylist(playlistId) {
+    const requestOptions = {
+        playlistId: playlistId,
+        part: 'snippet',
+        maxResults: 10
+    };
+
+    const request = gapi.client.youtube.playlistItems.list(requestOptions);
+
+    request.execute(res => {
+        const playlistItems = response.result.items;
+        if(playListItems) {
+            let output = '<h4 class="align-center">Latest Videos</h4>';
+
+            // Loop through videos and append output
+            playListItems.forEach(item => {
+                const videoId = item.snippet.resourceId.videoId;
+
+                output += `
+                    <div class="col s3">
+                        <iframe width="100%" height="auto" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    </div>
+                `;
+            });
+
+            videoContainer.innerHTML = output;
+        } else {
+            videoContainer.innerHTML = 'No Uploaded Videos';
+        }
+    });
 }

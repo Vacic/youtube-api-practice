@@ -19,6 +19,7 @@ channelForm.addEventListener('submit', e => {
     e.preventDefault();
 
     const channel = channelInput.value;
+    console.log(channel);
     getChannel(channel);
 })
 
@@ -81,7 +82,6 @@ function getChannel(channel) {
         forUsername: channel
     })
     .then(response => {
-        console.log(response);
         const channel = response.result.items[0];
 
         const output = `

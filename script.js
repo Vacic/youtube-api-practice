@@ -119,7 +119,7 @@ function requestVideoPlaylist(playlistId) {
 
     request.execute(res => {
         const playListItems = res.result.items;
-        console.log(playListItems);
+        console.log(res);
         if(playListItems) {
             let output = '<h4 class="align-center">Latest Videos</h4>';
 
